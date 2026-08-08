@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KCXmobil - My Wallets</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f5f5;
+    color: #111;
+    padding-bottom: 30px;
+}
+
+/* HEADER */
+.header {
+    background: #fff;
+    padding: 25px 20px 15px;
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.header p {
+    color: #666;
+    margin-top: 7px;
+    font-size: 14px;
+}
+
+/* BALANCE CARD */
+.balance-card {
+    margin: 10px 18px 22px;
+    min-height: 285px;
+    padding: 24px 18px;
+    border-radius: 18px;
+    color: white;
+
+    background:
+        radial-gradient(circle at 80% 20%,
+        rgba(255,0,0,.35),
+        transparent 35%),
+        linear-gradient(110deg, #050505, #090909, #e00000);
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+
+.balance-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.balance-title {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.currency {
+    border: 1px solid rgba(255,255,255,.7);
+    padding: 10px 13px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px;
+    margin-top: 80px;
+}
+
+.action {
+    height: 105px;
+    border-radius: 15px;
+    background: #e00000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.action:hover {
+    transform: translateY(-3px);
+    background: #ff0000;
+}
+
+.action:first-child {
+    background: white;
+    color: #111;
+}
+
+.icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.action span:last-child {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* WALLET SECTION */
+.section {
+    padding: 0 18px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.section-title h2 {
+    font-size: 19px;
+}
+
+.toggle {
+    font-size: 12px;
+    color: #666;
+}
+
+/* WALLET */
+.wallet {
+    background: white;
+    min-height: 70px;
+    border-radius: 12px;
+    margin-bottom: 7px;
+    padding: 12px 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 2px 7px rgba(0,0,0,.06);
+}
+
+.wallet-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.flag {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+.wallet-name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.wallet-code {
+    color: #777;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.arrow {
+    font-size: 25px;
+    color: #111;
+}
+
+/* ADD WALLET */
+.add-wallet {
+    background: white;
+    border: 1px dashed #888;
+    border-radius: 12px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #e00000;
+    font-weight: bold;
+    margin: 14px 0 25px;
+
+    cursor: pointer;
+}
+
+.add-icon {
+    font-size: 27px;
+    margin-right: 10px;
+}
+
+/* TRANSACTIONS */
+.transaction {
+    background: white;
+    padding: 14px 12px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.transaction-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.trans-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.green {
+    background: #e4f7e9;
+    color: #159447;
+}
+
+.red {
+    background: #ffe5e5;
+    color: #e00000;
+}
+
+.black {
+    background: #eeeeee;
+    color: #111;
+}
+
+.transaction-name {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.transaction-info {
+    color: #777;
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.transaction-date {
+    font-size: 10px;
+    color: #777;
+    text-align: right;
+}
+
+/* MOBILE */
+@media(max-width: 450px) {
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .balance-card {
+        min-height: 265px;
+    }
+
+    .actions {
+        margin-top: 65px;
+        gap: 6px;
+    }
+
+    .action {
+        height: 95px;
+    }
+
+    .icon {
+        font-size: 25px;
+    }
+
+    .action span:last-child {
+        font-size: 11px;
+    }
+
+    .wallet-name {
+        font-size: 15px;
+    }
+
+    .transaction-date {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <h1>My Wallets</h1>
+    <p>Manage all your currencies in one place.</p>
+</header>
+
+
+<!-- RED / BLACK BALANCE CARD -->
+<div class="balance-card">
+
+    <div class="balance-top">
+
+        <div class="balance-title">
+            Total Balance 👁
+        </div>
+
+        <div class="currency" onclick="changeCurrency()">
+            All Currencies ▾
+        </div>
+
+    </div>
+
+
+    <!-- NO BALANCE AMOUNT -->
+
+    <div class="actions">
+
+        <div class="action" onclick="fundWallet()">
+            <div class="icon">▣</div>
+            <span>Fund</span>
+        </div>
+
+        <div class="action" onclick="sendMoney()">
+            <div class="icon">➤</div>
+            <span>Send</span>
+        </div>
+
+        <div class="action" onclick="receiveMoney()">
+            <div class="icon">↓</div>
+            <span>Receive</span>
+        </div>
+
+        <div class="action" onclick="convertMoney()">
+            <div class="icon">⇄</div>
+            <span>Convert</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- WALLETS -->
+<section class="section">
+
+    <div class="section-title">
+        <h2>My Wallets</h2>
+
+        <div class="toggle">
+            Hide Zero Balance ⚪
+        </div>
+    </div>
+
+
+    <!-- USD -->
+    <div class="wallet">
+        <div class="wallet-left">
+
+            <div class="flag">🇺🇸</div>
+
+            <div>
+                <div class="wallet-name">
+                    US Dollar
+                </div>
+
+                <div class="wallet-code">
+                    USD
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+    </div>
+
+
+    <!-- EURO -->
+    <div class="wallet">
+        <div class="wallet-left">
+
+            <div class="flag">🇪🇺</div>
+
+            <div>
+                <div class="wallet-name">
+                    Euro
+                </div>
+
+                <div class="wallet-code">
+                    EUR
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+    </div>
+
+
+    <!-- GBP -->
+    <div class="wallet">
+        <div class="wallet-left">
+
+            <div class="flag">🇬🇧</div>
+
+            <div>
+                <div class="wallet-name">
+                    British Pound
+                </div>
+
+                <div class="wallet-code">
+                    GBP
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+    </div>
+
+
+    <!-- SAR -->
+    <div class="wallet">
+        <div class="wallet-left">
+
+            <div class="flag">🇸🇦</div>
+
+            <div>
+                <div class="wallet-name">
+                    Saudi Riyal
+                </div>
+
+                <div class="wallet-code">
+                    SAR
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+    </div>
+
+
+    <!-- AED -->
+    <div class="wallet">
+        <div class="wallet-left">
+
+            <div class="flag">🇦🇪</div>
+
+            <div>
+                <div class="wallet-name">
+                    UAE Dirham
+                </div>
+
+                <div class="wallet-code">
+                    AED
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+    </div>
+
+
+    <!-- CNY -->
+    <div class="wallet">
+        <div class="wallet-left">
+
+            <div class="flag">🇨🇳</div>
+
+            <div>
+                <div class="wallet-name">
+                    Chinese Yuan
+                </div>
+
+                <div class="wallet-code">
+                    CNY
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+    </div>
+
+
+    <!-- CAD -->
+    <div class="wallet">
+        <div class="wallet-left">
+
+            <div class="flag">🇨🇦</div>
+
+            <div>
+                <div class="wallet-name">
+                    Canadian Dollar
+                </div>
+
+                <div class="wallet-code">
+                    CAD
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrow">›</div>
+    </div>
+
+
+    <!-- ADD WALLET -->
+    <div class="add-wallet" onclick="addWallet()">
+
+        <span class="add-icon">⊕</span>
+
+        Add New Wallet
+
+    </div>
+
+
+    <!-- RECENT TRANSACTIONS -->
+    <div class="section-title">
+
+        <h2>Recent Wallet Transactions</h2>
+
+        <span style="color:#e00000;font-size:12px;">
+            View All
+        </span>
+
+    </div>
+
+
+    <!-- TRANSACTION 1 -->
+    <div class="transaction">
+
+        <div class="transaction-left">
+
+            <div class="trans-icon green">
+                ↓
+            </div>
+
+            <div>
+                <div class="transaction-name">
+                    Received from John Doe
+                </div>
+
+                <div class="transaction-info">
+                    USD Wallet
+                </div>
+            </div>
+
+        </div>
+
+        <div class="transaction-date">
+            27 May, 2025 · 10:45 AM
+        </div>
+
+    </div>
+
+
+    <!-- TRANSACTION 2 -->
+    <div class="transaction">
+
+        <div class="transaction-left">
+
+            <div class="trans-icon red">
+                ↑
+            </div>
+
+            <div>
+                <div class="transaction-name">
+                    Sent to Mary Johnson
+                </div>
+
+                <div class="transaction-info">
+                    GBP Wallet
+                </div>
+            </div>
+
+        </div>
+
+        <div class="transaction-date">
+            27 May, 2025 · 09:30 AM
+        </div>
+
+    </div>
+
+
+    <!-- TRANSACTION 3 -->
+    <div class="transaction">
+
+        <div class="transaction-left">
+
+            <div class="trans-icon red">
+                ▣
+            </div>
+
+            <div>
+                <div class="transaction-name">
+                    Bill Payment - DSTV
+                </div>
+
+                <div class="transaction-info">
+                    USD Wallet
+                </div>
+            </div>
+
+        </div>
+
+        <div class="transaction-date">
+            26 May, 2025 · 08:15 PM
+        </div>
+
+    </div>
+
+
+    <!-- TRANSACTION 4 -->
+    <div class="transaction">
+
+        <div class="transaction-left">
+
+            <div class="trans-icon black">
+                ⚡
+            </div>
+
+            <div>
+                <div class="transaction-name">
+                    Electricity Payment
+                </div>
+
+                <div class="transaction-info">
+                    AED Wallet
+                </div>
+            </div>
+
+        </div>
+
+        <div class="transaction-date">
+            26 May, 2025 · 07:05 PM
+        </div>
+
+    </div>
+
+
+    <!-- TRANSACTION 5 -->
+    <div class="transaction">
+
+        <div class="transaction-left">
+
+            <div class="trans-icon green">
+                ↓
+            </div>
+
+            <div>
+                <div class="transaction-name">
+                    Received from KCX Pay
+                </div>
+
+                <div class="transaction-info">
+                    EUR Wallet
+                </div>
+            </div>
+
+        </div>
+
+        <div class="transaction-date">
+            26 May, 2025 · 04:20 PM
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+function changeCurrency() {
+    alert("Currency selector opened");
+}
+
+function fundWallet() {
+    alert("Fund Wallet");
+}
+
+function sendMoney() {
+    alert("Send Money");
+}
+
+function receiveMoney() {
+    alert("Receive Money");
+}
+
+function convertMoney() {
+    alert("Currency Conversion");
+}
+
+function addWallet() {
+    alert("Add New Wallet");
+}
+
+</script>
+
+</body>
+</html>
