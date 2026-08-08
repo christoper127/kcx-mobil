@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCXmobil - Digital Bank</title>
+<style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Roboto, sans-serif;}
+  body {background:#fff; color:#333;}
+  <a href="index.html">Back to Login</a>
+  /* LANDING SECTION - RED */
+  .landing {background: linear-gradient(135deg, #D32F2F, #B71C1C); color:white; text-align:center; padding:60px 20px 80px; border-radius:0 0 40px 40px;}
+  .landing img.logo {width:80px; margin-bottom:15px;}
+  .landing h1 {font-size:32px; margin-bottom:10px;}
+  .landing p {font-size:16px; opacity:0.9; margin-bottom:30px;}
+  .landing .btn {background:white; color:#D32F2F; padding:15px 35px; border-radius:15px; font-weight:700; font-size:16px; border:none; cursor:pointer; box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+  .landing img.phone {width:280px; margin-top:40px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));}
+  
+  /* DASHBOARD SECTION - WHITE */
+  .dashboard {background:#fff; padding:30px 20px 100px;}
+  .section-title {font-size:18px; font-weight:700; color:#B71C1C; margin-bottom:15px;}
+  
+  .balance-card {background:#FFF5F5; border:2px solid #FFEBEE; padding:25px; border-radius:20px; margin-bottom:25px;}
+  .balance-card .label {font-size:13px; color:#777;}
+  .balance-card .amount {font-size:30px; font-weight:800; color:#D32F2F; margin:8px 0;}
+  .balance-card .currency {font-size:14px; color:#777; font-weight:600;}
+  .btns {display:flex; gap:12px; margin-top:15px;}
+  .btn-red {flex:1; padding:14px; background:#D32F2F; color:white; border:none; border-radius:12px; font-weight:700; cursor:pointer;}
+  .btn-outline {flex:1; padding:14px; background:white; color:#D32F2F; border:2px solid #D32F2F; border-radius:12px; font-weight:700; cursor:pointer;}
+  
+  .grid {display:grid; grid-template-columns: repeat(4, 1fr); gap:15px; margin-bottom:25px;}
+  .card {background:#FFF5F5; border:1px solid #FFEBEE; padding:18px 10px; border-radius:15px; text-align:center; font-size:12px; font-weight:600;}
+  .card .icon {font-size:24px; margin-bottom:8px;}
+  
+  .list {background:#FFF5F5; border:1px solid #FFEBEE; border-radius:15px; padding:15px;}
+  .list-item {display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #FFEBEE; font-size:14px;}
+  .list-item:last-child {border:none;}
+  .list-left {display:flex; gap:10px; align-items:center;}
+  .flag {width:32px; height:32px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid #FFEBEE;}
+  
+  .bottom-nav {position:fixed; bottom:0; left:0; width:100%; background:white; display:flex; justify-content:space-around; padding:12px 0; border-top:2px solid #FFEBEE; box-shadow:0 -4px 15px rgba(211,47,47,0.1);}
+  .nav-item {text-align:center; font-size:11px; color:#888; font-weight:600;}
+  .nav-item.active {color:#D32F2F;}
+  .nav-icon {font-size:22px; margin-bottom:3px;}
+</style>
+</head>
+<body>
+
+  <!-- 1. LANDING PAGE PART -->
+  <div class="landing">
+    <img src="Screenshot.png" class="logo" alt="KCXmobil Logo">
+    <h1>Welcome to KCXmobil</h1>
+    <p>Your Smart Digital Bank. Send, Save & Spend Globally.</p>
+    <button class="btn">Join KCXmobil Today</button>
+    <img src="Screen.png" class="phone" alt="App Screen">
+  </div>
+
+  <!-- 2. DASHBOARD PART - COMPLEX -->
+  <div class="dashboard">
+    <div class="section-title">Account Overview</div>
+    <div class="balance-card">
+      <div class="label">Total Balance</div>
+      <div class="amount">•••••••••• <span class="currency">USD</span></div>
+      <div class="btns">
+        <button class="btn-red">Fund Wallet</button>
+        <button class="btn-outline">Send Money</button>
+      </div>
+    </div>
+
+    <div class="section-title">Quick Actions</div>
+    <div class="grid">
+      <div class="card"><div class="icon">⬆️</div>Send</div>
+      <div class="card"><div class="icon">⬇️</div>Receive</div>
+      <div class="card"><div class="icon">🔄</div>Convert</div>
+      <div class="card"><div class="icon">🎮</div>Kick Play</div>
+    </div>
+
+    <div class="section-title">My Wallets</div>
+    <div class="list">
+      <div class="list-item">
+        <div class="list-left"><div class="flag">🇺🇸</div> USD Wallet</div>
+        <div>••••••••</div>
+      </div>
+      <div class="list-item">
+        <div class="list-left"><div class="flag">🇪🇺</div> EUR Wallet</div>
+        <div>••••••••</div>
+      </div>
+      <div class="list-item">
+        <div class="list-left"><div class="flag">🇬🇧</div> GBP Wallet</div>
+        <div>••••••••</div>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:25px;">Exchange Rates</div>
+    <div class="list">
+      <div class="list-item"><span>USD → EUR</span><span>1.08</span></div>
+      <div class="list-item"><span>USD → GBP</span><span>0.79</span></div>
+      <div class="list-item"><span>USD → GHS</span><span>12.50</span></div>
+    </div>
+  </div>
+
+</body>
+</html>

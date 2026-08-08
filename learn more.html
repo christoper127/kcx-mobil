@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="Screenshot.png">
+
+    <title>KCXmobil - Security</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: white;
+        }
+
+        header {
+            background: #0a0a0a;
+            border-bottom: 1px solid #222;
+            padding: 18px 6%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .logo span {
+            color: #e50914;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            border: 1px solid #444;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            border-color: #e50914;
+            color: #e50914;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 20px 50px;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(229, 9, 20, 0.25),
+                    transparent 60%
+                );
+        }
+
+        .security-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #e50914;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            color: #aaa;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px 80px;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .security-card {
+            background: #151515;
+            border: 1px solid #292929;
+            border-radius: 16px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .security-card:hover {
+            transform: translateY(-5px);
+            border-color: #e50914;
+        }
+
+        .security-card .icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .security-card h2 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .security-card p {
+            color: #aaa;
+            line-height: 1.7;
+        }
+
+        .safety-box {
+            margin-top: 30px;
+            padding: 35px;
+            background: linear-gradient(135deg, #e50914, #8b0000);
+            border-radius: 18px;
+        }
+
+        .safety-box h2 {
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+
+        .safety-box p {
+            line-height: 1.7;
+        }
+
+        .safety-box ul {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        .safety-box li {
+            margin: 12px 0;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact h2 {
+            margin-bottom: 12px;
+        }
+
+        .contact p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: #e50914;
+            color: white;
+            text-decoration: none;
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            border-top: 1px solid #222;
+            padding: 25px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav>
+
+        <div class="logo">
+            <img src="Screenshot.png" alt="KCXmobil Logo">
+            KCX<span>mobil</span>
+        </div>
+
+        <a href="index.html" class="back-btn">
+            ← Back
+        </a>
+
+    </nav>
+</header>
+
+
+<section class="hero">
+
+    <div class="security-icon">🔒</div>
+
+    <h1>Your <span>Security</span> Is Our Priority</h1>
+
+    <p>
+        KCXmobil is designed with security in mind.
+        We are committed to protecting your account,
+        personal information and transactions as we continue
+        to build and improve the platform.
+    </p>
+
+</section>
+
+
+<main class="container">
+
+    <div class="security-grid">
+
+        <div class="security-card">
+            <div class="icon">🔐</div>
+
+            <h2>Account Protection</h2>
+
+            <p>
+                Keep your KCXmobil account protected with a
+                strong password and secure account credentials.
+                Never share your password or verification codes
+                with anyone.
+            </p>
+        </div>
+
+
+        <div class="security-card">
+            <div class="icon">🛡️</div>
+
+            <h2>Data Protection</h2>
+
+            <p>
+                We are committed to protecting personal information
+                and building secure systems for handling information
+                submitted through the platform.
+            </p>
+        </div>
+
+
+        <div class="security-card">
+            <div class="icon">💳</div>
+
+            <h2>Transaction Safety</h2>
+
+            <p>
+                Transactions should be carefully reviewed before
+                they are completed. Always check the recipient and
+                transaction details before confirming.
+            </p>
+        </div>
+
+
+        <div class="security-card">
+            <div class="icon">🚨</div>
+
+            <h2>Fraud Awareness</h2>
+
+            <p>
+                Be careful of messages asking for your password,
+                PIN or verification code. KCXmobil will never
+                ask you to publicly share sensitive account details.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="safety-box">
+
+        <h2>Keep Your Account Safe</h2>
+
+        <p>
+            You can also help protect your KCXmobil account by
+            following these simple security practices:
+        </p>
+
+        <ul>
+            <li>Use a strong and unique password.</li>
+            <li>Never share your password or verification codes.</li>
+            <li>Check transaction details before confirming.</li>
+            <li>Only access your account from trusted devices.</li>
+            <li>Contact support if you notice suspicious activity.</li>
+        </ul>
+
+    </div>
+
+
+    <div class="contact">
+
+        <h2>Need Help?</h2>
+
+        <p>
+            If you notice something suspicious on your account,
+            contact KCXmobil support.
+        </p>
+
+        <a href="#" class="contact-btn">
+            Contact Support
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 KCXmobil. All rights reserved.
+</footer>
+
+</body>
+</html>
