@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCXmobil - Beneficiaries</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+. tabs
+    margin-top:-5px;
+    background: #050505
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.tab {
+    width: 45%;
+    text-align: center;
+    padding: 16px 5px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+.tab.active {
+    color: #ff1111;
+    border-bottom: 3px solid #ff1111;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #111;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(145deg, #050505 55%, #e00000);
+    color: white;
+    padding: 28px 20px 55px;
+    position: relative;
+}
+
+.back {
+    position: absolute;
+    left: 18px;
+    top: 28px;
+    font-size: 38px;
+    cursor: pointer;
+}
+
+.header-text {
+    margin-left: 55px;
+}
+
+.header h1 {
+    font-size: 27px;
+}
+
+.header p {
+    color: #ddd;
+    margin-top: 7px;
+    font-size: 14px;
+}
+
+.history {
+    position: absolute;
+    right: 20px;
+    top: 32px;
+    font-size: 28px;
+}
+
+/* TABS */
+.tabs {
+    margin-top: -5px;
+    background: #050505;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.tab {
+    width: 45%;
+    text-align: center;
+    padding: 16px 5px;
+    font-weight: bold;
+}
+
+.tab.active {
+    color: #ff1111;
+    border-bottom: 3px solid #ff1111;
+}
+
+/* MAIN */
+.container {
+    background: white;
+    min-height: calc(100vh - 170px);
+    padding: 25px 18px;
+}
+
+/* SEARCH */
+.search {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.search input {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    padding: 0 20px 0 52px;
+    font-size: 15px;
+    outline: none;
+}
+
+.search input:focus {
+    border-color: #e00000;
+}
+
+.search-icon {
+    position: absolute;
+    left: 17px;
+    top: 17px;
+    font-size: 25px;
+    color: #777;
+}
+
+/* TITLE */
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.list-header h2 {
+    font-size: 19px;
+}
+
+.sort {
+    color: #555;
+    font-size: 14px;
+}
+
+.sort select {
+    border: none;
+    color: #e00000;
+    font-weight: bold;
+    outline: none;
+    background: transparent;
+}
+
+/* CARD */
+.card {
+    border: 1px solid #e1e1e1;
+    border-radius: 15px;
+    padding: 14px 12px;
+    margin-bottom: 13px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+
+.card-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.avatar {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 50%;
+
+    background: #e00000;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.info {
+    min-width: 0;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.email {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 7px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 190px;
+}
+
+.wallet {
+    display: inline-block;
+    background: #f1f1f1;
+    border-radius: 20px;
+    padding: 5px 9px;
+    font-size: 11px;
+    color: #333;
+}
+
+/* ACTIONS */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 5px;
+}
+
+.action {
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.favorite {
+    color: #111;
+}
+
+.favorite.active {
+    color: #e00000;
+}
+
+.edit {
+    color: #111;
+}
+
+.delete {
+    color: #e00000;
+}
+
+/* ADD BUTTON */
+.add {
+    width: 100%;
+    height: 62px;
+
+    border: 1.5px dashed #e00000;
+    border-radius: 14px;
+
+    background: white;
+    color: #e00000;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.add:hover {
+    background: #fff5f5;
+}
+
+/* ADD FORM */
+.form {
+    display: none;
+    margin-top: 18px;
+    padding: 18px;
+
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    background: #fafafa;
+}
+
+.form.show {
+    display: block;
+}
+
+.form h3 {
+    margin-bottom: 15px;
+}
+
+.input,
+.form select {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 11px;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    padding: 0 13px;
+    outline: none;
+    background: white;
+}
+
+.input:focus,
+.form select:focus {
+    border-color: #e00000;
+}
+
+.save {
+    width: 100%;
+    height: 50px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #e00000;
+    color: white;
+
+    font-weight: bold;
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+/* SECURITY */
+.security {
+    margin-top: 25px;
+    padding: 18px;
+
+    border: 1px solid #eee;
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.security-icon {
+    color: #e00000;
+    font-size: 35px;
+}
+
+.security strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.security p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* EMPTY */
+.empty {
+    text-align: center;
+    padding: 40px 10px;
+    color: #777;
+}
+
+/* TOAST */
+.toast {
+    position: fixed;
+    bottom: 25px;
+    left: 20px;
+    right: 20px;
+
+    background: #111;
+    color: white;
+
+    padding: 15px;
+    border-radius: 12px;
+
+    text-align: center;
+
+    display: none;
+    z-index: 100;
+}
+
+.toast.show {
+    display: block;
+}
+
+/* MOBILE */
+@media(max-width:420px) {
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .actions {
+        gap: 5px;
+    }
+
+    .action {
+        font-size: 19px;
+    }
+
+    .email {
+        max-width: 150px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+
+    <div class="back" onclick="history.back()">‹</div>
+
+    <div class="header-text">
+        <h1>Beneficiaries</h1>
+        <p>Manage your saved recipients</p>
+    </div>
+
+    <div class="history">◷</div>
+
+</header>
+
+<main class="container">
+
+    <!-- SEARCH -->
+    <div class="search">
+
+        <span class="search-icon">⌕</span>
+
+        <input
+            id="search"
+            type="text"
+            placeholder="Search beneficiaries..."
+            oninput="searchBeneficiaries()"
+        >
+
+    </div>
+
+
+    <!-- LIST HEADER -->
+    <div class="list-header">
+
+        <h2 id="count">
+            All Beneficiaries
+        </h2>
+
+        <div class="sort">
+
+            Sort by:
+
+            <select id="sort" onchange="render()">
+
+                <option value="recent">
+                    Recent
+                </option>
+
+                <option value="name">
+                    Name
+                </option>
+
+                <option value="currency">
+                    Currency
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- BENEFICIARIES -->
+    <div id="list"></div>
+
+
+    <!-- ADD BUTTON -->
+    <button class="add" onclick="toggleForm()">
+        ＋ &nbsp; Add New Beneficiary
+    </button>
+
+
+    <!-- FORM -->
+    <div class="form" id="form">
+
+        <h3 id="formTitle">
+            Add New Beneficiary
+        </h3>
+
+        <input
+            class="input"
+            id="name"
+            type="text"
+            placeholder="Full name"
+        >
+
+        <input
+            class="input"
+            id="email"
+            type="email"
+            placeholder="Email address"
+        >
+
+        <select id="currency">
+
+            <option value="USD">
+                🇺🇸 USD Wallet
+            </option>
+
+            <option value="NGN">
+                🇳🇬 NGN Wallet
+            </option>
+
+            <option value="EUR">
+                🇪🇺 EUR Wallet
+            </option>
+
+            <option value="GBP">
+                🇬🇧 GBP Wallet
+            </option>
+
+            <option value="AED">
+                🇦🇪 AED Wallet
+            </option>
+
+            <option value="GHS">
+                🇬🇭 GHS Wallet
+            </option>
+
+            <option value="CAD">
+                🇨🇦 CAD Wallet
+            </option>
+
+            <option value="CNY">
+                🇨🇳 CNY Wallet
+            </option>
+
+        </select>
+
+        <button class="save" onclick="saveBeneficiary()">
+            Save Beneficiary
+        </button>
+
+    </div>
+
+
+    <!-- SECURITY -->
+    <div class="security">
+
+        <div class="security-icon">
+            ♢
+        </div>
+
+        <div>
+
+            <strong>
+                Your beneficiaries are secure
+            </strong>
+
+            <p>
+                Beneficiary information is stored
+                securely in this demo.
+            </p>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* LOAD SAVED DATA */
+let beneficiaries = JSON.parse(
+    localStorage.getItem("kcxBeneficiaries")
+) || [
+
+    {
+        name: "Mary Johnson",
+        email: "mary.johnson@email.com",
+        currency: "USD",
+        favorite: true
+    },
+
+    {
+        name: "Daniel Okoro",
+        email: "daniel.okoro@email.com",
+        currency: "NGN",
+        favorite: false
+    },
+
+    {
+        name: "Sarah Ahmed",
+        email: "sarah.ahmed@email.com",
+        currency: "AED",
+        favorite: false
+    },
+
+    {
+        name: "John Thompson",
+        email: "john.thompson@email.com",
+        currency: "GBP",
+        favorite: true
+    }
+
+];
+
+let editIndex = -1;
+
+
+/* SAVE TO BROWSER */
+function saveData() {
+
+    localStorage.setItem(
+        "kcxBeneficiaries",
+        JSON.stringify(beneficiaries)
+    );
+
+}
+
+
+/* INITIAL DISPLAY */
+render();
+
+
+/* RENDER */
+function render() {
+
+    const list =
+        document.getElementById("list");
+
+    const search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    let data =
+        beneficiaries.filter(person =>
+            person.name.toLowerCase().includes(search) ||
+            person.email.toLowerCase().includes(search) ||
+            person.currency.toLowerCase().includes(search)
+        );
+
+
+    /* SORT */
+    const sort =
+        document.getElementById("sort").value;
+
+    if (sort === "name") {
+
+        data.sort((a,b) =>
+            a.name.localeCompare(b.name)
+        );
+
+    }
+
+    if (sort === "currency") {
+
+        data.sort((a,b) =>
+            a.currency.localeCompare(b.currency)
+        );
+
+    }
+
+
+    document.getElementById("count")
+        .textContent =
+        "All Beneficiaries (" + data.length + ")";
+
+
+    list.innerHTML = "";
+
+
+    if (data.length === 0) {
+
+        list.innerHTML = `
+            <div class="empty">
+                No beneficiaries found.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    data.forEach((person) => {
+
+        const realIndex =
+            beneficiaries.indexOf(person);
+
+        const initials =
+            person.name
+                .split(" ")
+                .map(word => word[0])
+                .join("")
+                .substring(0,2)
+                .toUpperCase();
+
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        card.innerHTML = `
+
+            <div class="card-left">
+
+                <div class="avatar">
+                    ${initials}
+                </div>
+
+                <div class="info">
+
+                    <div class="name">
+                        ${escapeHTML(person.name)}
+                    </div>
+
+                    <div class="email">
+                        ${escapeHTML(person.email)}
+                    </div>
+
+                    <span class="wallet">
+                        ${getFlag(person.currency)}
+                        ${person.currency} Wallet
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="action favorite ${person.favorite ? "active" : ""}"
+                    onclick="favorite(${realIndex})"
+                >
+                    ★
+                </button>
+
+                <button
+                    class="action edit"
+                    onclick="editBeneficiary(${realIndex})"
+                >
+                    ✎
+                </button>
+
+                <button
+                    class="action delete"
+                    onclick="deleteBeneficiary(${realIndex})"
+                >
+                    ♧
+                </button>
+
+            </div>
+        `;
+
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+/* SEARCH */
+function searchBeneficiaries() {
+    render();
+}
+
+
+/* ADD / EDIT FORM */
+function toggleForm() {
+
+    const form =
+        document.getElementById("form");
+
+    form.classList.toggle("show");
+
+    if (!form.classList.contains("show")) {
+        clearForm();
+    }
+
+}
+
+
+/* SAVE */
+function saveBeneficiary() {
+
+    const name =
+        document.getElementById("name")
+        .value
+        .trim();
+
+    const email =
+        document.getElementById("email")
+        .value
+        .trim();
+
+    const currency =
+        document.getElementById("currency")
+        .value;
+
+
+    if (!name || !email) {
+
+        showToast(
+            "Please enter a name and email."
+        );
+
+        return;
+    }
+
+
+    if (!email.includes("@")) {
+
+        showToast(
+            "Please enter a valid email."
+        );
+
+        return;
+    }
+
+
+    if (editIndex === -1) {
+
+        beneficiaries.push({
+
+            name: name,
+            email: email,
+            currency: currency,
+            favorite: false
+
+        });
+
+        showToast(
+            "Beneficiary added successfully."
+        );
+
+    } else {
+
+        beneficiaries[editIndex].name =
+            name;
+
+        beneficiaries[editIndex].email =
+            email;
+
+        beneficiaries[editIndex].currency =
+            currency;
+
+        showToast(
+            "Beneficiary updated."
+        );
+
+        editIndex = -1;
+
+    }
+
+
+    saveData();
+    render();
+    clearForm();
+
+    document
+        .getElementById("form")
+        .classList.remove("show");
+
+}
+
+
+/* EDIT */
+function editBeneficiary(index) {
+
+    const person =
+        beneficiaries[index];
+
+    editIndex = index;
+
+    document.getElementById("formTitle")
+        .textContent =
+        "Edit Beneficiary";
+
+    document.getElementById("name")
+        .value =
+        person.name;
+
+    document.getElementById("email")
+        .value =
+        person.email;
+
+    document.getElementById("currency")
+        .value =
+        person.currency;
+
+    document
+        .getElementById("form")
+        .classList.add("show");
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+
+}
+
+
+/* DELETE */
+function deleteBeneficiary(index) {
+
+    const person =
+        beneficiaries[index];
+
+    if (!confirm(
+        "Delete " + person.name + "?"
+    )) {
+        return;
+    }
+
+    beneficiaries.splice(index,1);
+
+    saveData();
+    render();
+
+    showToast(
+        "Beneficiary deleted."
+    );
+
+}
+
+
+/* FAVORITE */
+function favorite(index) {
+
+    beneficiaries[index].favorite =
+        !beneficiaries[index].favorite;
+
+    saveData();
+    render();
+
+}
+
+
+/* CLEAR FORM */
+function clearForm() {
+
+    document.getElementById("name")
+        .value = "";
+
+    document.getElementById("email")
+        .value = "";
+
+    document.getElementById("currency")
+        .value = "USD";
+
+    document.getElementById("formTitle")
+        .textContent =
+        "Add New Beneficiary";
+
+    editIndex = -1;
+
+}
+
+
+/* FLAG */
+function getFlag(currency) {
+
+    const flags = {
+
+        USD: "🇺🇸",
+        NGN: "🇳🇬",
+        EUR: "🇪🇺",
+        GBP: "🇬🇧",
+        AED: "🇦🇪",
+        GHS: "🇬🇭",
+        CAD: "🇨🇦",
+        CNY: "🇨🇳"
+
+    };
+
+    return flags[currency] || "🌍";
+
+}
+
+
+/* SECURITY */
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+
+}
+
+
+/* TOAST */
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2500);
+
+}
+
+</script>
+
+</body>
+</html>

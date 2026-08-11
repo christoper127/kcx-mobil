@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCXmobil - Transfer</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: #111;
+    padding-bottom: 30px;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(145deg, #050505 55%, #e00000);
+    color: white;
+    padding: 28px 20px 78px;
+    position: relative;
+}
+
+.back {
+    position: absolute;
+    top: 30px;
+    left: 18px;
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.headerText {
+    margin-left: 55px;
+}
+
+.header h1 {
+    font-size: 27px;
+}
+
+.header p {
+    margin-top: 6px;
+    color: #ddd;
+    font-size: 14px;
+}
+
+.history {
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    font-size: 28px;
+}
+
+/* TABS */
+.tabs {
+    margin-top: -42px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    color: white;
+}
+
+.tab {
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.tab.active {
+    color: #ff1717;
+    border-bottom: 3px solid #ff1717;
+}
+
+/* MAIN */
+.container {
+    background: white;
+    border-radius: 20px 20px 0 0;
+    padding: 22px 18px;
+}
+
+/* LABEL */
+label {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.sub {
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 11px;
+}
+
+/* BOX */
+.box {
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    min-height: 68px;
+    padding: 11px 14px;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+
+    background: #e00000;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+}
+
+.flag {
+    font-size: 31px;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+    background: #e00000;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.small {
+    color: #777;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.arrow {
+    font-size: 25px;
+}
+
+/* DROPDOWN */
+.dropdown {
+    display: none;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    margin-top: -12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,.12);
+}
+
+.dropdown.show {
+    display: block;
+}
+
+.wallet-option,
+.recipient-option {
+    padding: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.wallet-option:last-child,
+.recipient-option:last-child {
+    border-bottom: none;
+}
+
+.wallet-option:hover,
+.recipient-option:hover {
+    background: #fff2f2;
+}
+
+.check {
+    color: #e00000;
+    font-size: 20px;
+}
+
+/* ADD RECIPIENT */
+.addRecipient {
+    border: 1px dashed #e00000;
+    color: #e00000;
+    height: 55px;
+    border-radius: 13px;
+
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 22px;
+}
+
+/* FORM */
+.addForm {
+    display: none;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 16px;
+    margin-bottom: 20px;
+    background: #fafafa;
+}
+
+.addForm.show {
+    display: block;
+}
+
+.addForm h3 {
+    margin-bottom: 15px;
+}
+
+.input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0 13px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.input:focus {
+    border-color: #e00000;
+}
+
+.addBtn {
+    width: 100%;
+    height: 48px;
+    background: #e00000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* AMOUNT */
+.amount {
+    display: flex;
+    height: 70px;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.symbol {
+    width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #ddd;
+    font-size: 24px;
+}
+
+.amount input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 15px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* QUICK */
+.quick {
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 6px;
+    margin: 10px 0 22px;
+}
+
+.quick button {
+    height: 40px;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.quick button:hover {
+    border-color: #e00000;
+    color: #e00000;
+}
+
+/* CURRENCY */
+select {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #ddd;
+    border-radius: 13px;
+    padding: 0 12px;
+    font-size: 15px;
+    font-weight: bold;
+    background: white;
+    outline: none;
+}
+
+/* DESCRIPTION */
+textarea {
+    width: 100%;
+    height: 90px;
+    border: 1px solid #ddd;
+    border-radius: 13px;
+    padding: 13px;
+    resize: none;
+    outline: none;
+    font-family: Arial;
+    margin-top: 5px;
+}
+
+/* CONTINUE */
+.continue {
+    width: 100%;
+    height: 58px;
+    margin-top: 17px;
+
+    border: none;
+    border-radius: 13px;
+
+    background: #e00000;
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.continue:hover {
+    background: #c90000;
+}
+
+/* SECURITY */
+.security {
+    text-align: center;
+    border: 1px solid #eee;
+    border-radius: 13px;
+    padding: 15px;
+    margin-top: 17px;
+}
+
+.securityIcon {
+    color: #e00000;
+    font-size: 25px;
+}
+
+.security strong {
+    display: block;
+    margin-top: 5px;
+}
+
+.security p {
+    color: #777;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+/* SUCCESS */
+.success {
+    display: none;
+    position: fixed;
+    left: 20px;
+    right: 20px;
+    bottom: 25px;
+
+    background: #111;
+    color: white;
+
+    padding: 16px;
+    border-radius: 12px;
+
+    text-align: center;
+    z-index: 20;
+}
+
+.success.show {
+    display: block;
+}
+
+/* MOBILE */
+@media(max-width:420px) {
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .quick button {
+        font-size: 11px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="back" onclick="history.back()">‹</div>
+
+    <div class="headerText">
+        <h1>Transfer Money</h1>
+        <p>Send money to any wallet or user</p>
+    </div>
+
+    <div class="history">◷</div>
+
+</header>
+
+
+<div class="tabs">
+
+    <a href="Transfer.html" class="tab active">
+        ✈ Transfer
+    </div>
+
+    <a href="Beneficiaries.html" class="tab">
+        ♙ Beneficiaries
+    </a>
+
+</div>
+
+
+<main class="container">
+
+<!-- WALLET -->
+
+<label>From Wallet</label>
+
+<div class="sub">
+    Choose the wallet to debit
+</div>
+
+<div class="box" onclick="toggleWallets()">
+
+    <div class="left">
+
+        <div class="flag" id="walletFlag">🇺🇸</div>
+
+        <div>
+            <div class="name" id="walletName">
+                USD Wallet
+            </div>
+
+            <div class="small" id="walletCurrency">
+                US Dollar
+            </div>
+        </div>
+
+    </div>
+
+    <div class="arrow">⌄</div>
+
+</div>
+
+
+<!-- WALLET LIST -->
+
+<div class="dropdown" id="walletDropdown">
+
+    <div class="wallet-option" onclick="selectWallet('USD','US Dollar','🇺🇸','$')">
+        <div class="left">
+            <span class="flag">🇺🇸</span>
+            <div>
+                <b>USD Wallet</b>
+                <div class="small">US Dollar</div>
+            </div>
+        </div>
+        <span class="check">✓</span>
+    </div>
+
+    <div class="wallet-option" onclick="selectWallet('EUR','Euro','🇪🇺','€')">
+        <div class="left">
+            <span class="flag">🇪🇺</span>
+            <div>
+                <b>EUR Wallet</b>
+                <div class="small">Euro</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wallet-option" onclick="selectWallet('GBP','British Pound','🇬🇧','£')">
+        <div class="left">
+            <span class="flag">🇬🇧</span>
+            <div>
+                <b>GBP Wallet</b>
+                <div class="small">British Pound</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wallet-option" onclick="selectWallet('AED','UAE Dirham','🇦🇪','د.إ')">
+        <div class="left">
+            <span class="flag">🇦🇪</span>
+            <div>
+                <b>AED Wallet</b>
+                <div class="small">UAE Dirham</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wallet-option" onclick="selectWallet('NGN','Nigerian Naira','🇳🇬','₦')">
+        <div class="left">
+            <span class="flag">🇳🇬</span>
+            <div>
+                <b>NGN Wallet</b>
+                <div class="small">Nigerian Naira</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wallet-option" onclick="selectWallet('GHS','Ghana Cedi','🇬🇭','₵')">
+        <div class="left">
+            <span class="flag">🇬🇭</span>
+            <div>
+                <b>GHS Wallet</b>
+                <div class="small">Ghana Cedi</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wallet-option" onclick="selectWallet('CAD','Canadian Dollar','🇨🇦','C$')">
+        <div class="left">
+            <span class="flag">🇨🇦</span>
+            <div>
+                <b>CAD Wallet</b>
+                <div class="small">Canadian Dollar</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wallet-option" onclick="selectWallet('CNY','Chinese Yuan','🇨🇳','¥')">
+        <div class="left">
+            <span class="flag">🇨🇳</span>
+            <div>
+                <b>CNY Wallet</b>
+                <div class="small">Chinese Yuan</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- RECIPIENT -->
+
+<label>To (Recipient)</label>
+
+<div class="sub">
+    Choose or add a recipient
+</div>
+
+<div class="box" onclick="toggleRecipients()">
+
+    <div class="left">
+
+        <div class="avatar" id="recipientAvatar">
+            MJ
+        </div>
+
+        <div>
+            <div class="name" id="recipientName">
+                Mary Johnson
+            </div>
+
+            <div class="small" id="recipientEmail">
+                mary.johnson@email.com
+            </div>
+        </div>
+
+    </div>
+
+    <div class="arrow">⌄</div>
+
+</div>
+
+
+<!-- RECIPIENT LIST -->
+
+<div class="dropdown" id="recipientDropdown"></div>
+
+
+<!-- ADD NEW -->
+
+<div class="addRecipient" onclick="showAddForm()">
+    ＋ &nbsp; Add New Recipient
+</div>
+
+
+<div class="addForm" id="addForm">
+
+    <h3>Add New Recipient</h3>
+
+    <input
+        class="input"
+        id="newName"
+        placeholder="Recipient name"
+    >
+
+    <input
+        class="input"
+        id="newEmail"
+        type="email"
+        placeholder="Email address"
+    >
+
+    <button class="addBtn" onclick="addRecipient()">
+        Add Recipient
+    </button>
+
+</div>
+
+
+<!-- AMOUNT -->
+
+<label>Amount</label>
+
+<div class="sub">
+    Enter the amount to send
+</div>
+
+<div class="amount">
+
+    <div class="symbol" id="symbol">
+        $
+    </div>
+
+    <input
+        id="amount"
+        type="number"
+        placeholder="0.00"
+        min="0"
+    >
+
+</div>
+
+
+<div class="quick">
+
+    <button onclick="setAmount(10)">10</button>
+    <button onclick="setAmount(50)">50</button>
+    <button onclick="setAmount(100)">100</button>
+    <button onclick="setAmount(200)">200</button>
+    <button onclick="setAmount(500)">500</button>
+
+</div>
+
+
+<!-- CURRENCY -->
+
+<label>Currency</label>
+
+<div class="sub">
+    Select the currency
+</div>
+
+<select id="currency" onchange="changeCurrency()">
+
+    <option value="USD" data-symbol="$">
+        🇺🇸 USD - US Dollar
+    </option>
+
+    <option value="EUR" data-symbol="€">
+        🇪🇺 EUR - Euro
+    </option>
+
+    <option value="GBP" data-symbol="£">
+        🇬🇧 GBP - British Pound
+    </option>
+
+    <option value="AED" data-symbol="د.إ">
+        🇦🇪 AED - UAE Dirham
+    </option>
+
+    <option value="NGN" data-symbol="₦">
+        🇳🇬 NGN - Nigerian Naira
+    </option>
+
+    <option value="GHS" data-symbol="₵">
+        🇬🇭 GHS - Ghana Cedi
+    </option>
+
+    <option value="CAD" data-symbol="C$">
+        🇨🇦 CAD - Canadian Dollar
+    </option>
+
+    <option value="CNY" data-symbol="¥">
+        🇨🇳 CNY - Chinese Yuan
+    </option>
+
+</select>
+
+
+<!-- DESCRIPTION -->
+
+<label style="margin-top:22px;">
+    Description
+    <span style="color:#777;font-weight:normal;">
+        (Optional)
+    </span>
+</label>
+
+<textarea
+    maxlength="100"
+    placeholder="Enter description..."
+></textarea>
+
+
+<!-- CONTINUE -->
+
+<button class="continue" onclick="continueTransfer()">
+    ✈ &nbsp; Continue
+</button>
+
+
+<!-- SECURITY -->
+
+<div class="security">
+
+    <div class="securityIcon">♢</div>
+
+    <strong>
+        Your transfer is secure and protected
+    </strong>
+
+    <p>
+        All transactions are encrypted and safe.
+    </p>
+
+</div>
+
+</main>
+
+
+<div class="success" id="success">
+    ✓ Recipient added successfully
+</div>
+
+
+<script>
+
+/* DEFAULT RECIPIENTS */
+let recipients = JSON.parse(
+    localStorage.getItem("kcxRecipients")
+) || [
+    {
+        name: "Mary Johnson",
+        email: "mary.johnson@email.com"
+    }
+];
+
+
+/* WALLET */
+function toggleWallets() {
+
+    document
+        .getElementById("walletDropdown")
+        .classList.toggle("show");
+
+}
+
+
+function selectWallet(code, name, flag, symbol) {
+
+    document.getElementById("walletName")
+        .textContent = code + " Wallet";
+
+    document.getElementById("walletCurrency")
+        .textContent = name;
+
+    document.getElementById("walletFlag")
+        .textContent = flag;
+
+    document.getElementById("symbol")
+        .textContent = symbol;
+
+    document.getElementById("currency").value = code;
+
+    document
+        .getElementById("walletDropdown")
+        .classList.remove("show");
+}
+
+
+/* RECIPIENTS */
+function toggleRecipients() {
+
+    renderRecipients();
+
+    document
+        .getElementById("recipientDropdown")
+        .classList.toggle("show");
+
+}
+
+
+function renderRecipients() {
+
+    const dropdown =
+        document.getElementById("recipientDropdown");
+
+    dropdown.innerHTML = "";
+
+    recipients.forEach((person, index) => {
+
+        const option =
+            document.createElement("div");
+
+        option.className = "recipient-option";
+
+        const initials =
+            person.name
+                .split(" ")
+                .map(word => word[0])
+                .join("")
+                .substring(0,2)
+                .toUpperCase();
+
+        option.innerHTML = `
+            <div class="left">
+                <div class="avatar">${initials}</div>
+                <div>
+                    <b>${person.name}</b>
+                    <div class="small">${person.email}</div>
+                </div>
+            </div>
+
+            <span class="check">›</span>
+        `;
+
+        option.onclick = function() {
+            selectRecipient(index);
+        };
+
+        dropdown.appendChild(option);
+
+    });
+
+}
+
+
+function selectRecipient(index) {
+
+    const person = recipients[index];
+
+    const initials =
+        person.name
+            .split(" ")
+            .map(word => word[0])
+            .join("")
+            .substring(0,2)
+            .toUpperCase();
+
+    document.getElementById("recipientAvatar")
+        .textContent = initials;
+
+    document.getElementById("recipientName")
+        .textContent = person.name;
+
+    document.getElementById("recipientEmail")
+        .textContent = person.email;
+
+    document
+        .getElementById("recipientDropdown")
+        .classList.remove("show");
+
+}
+
+
+/* ADD FORM */
+function showAddForm() {
+
+    document
+        .getElementById("addForm")
+        .classList.toggle("show");
+
+}
+
+
+/* ADD RECIPIENT */
+function addRecipient() {
+
+    const name =
+        document.getElementById("newName").value.trim();
+
+    const email =
+        document.getElementById("newEmail").value.trim();
+
+    if (!name || !email) {
+
+        alert("Please enter the recipient name and email.");
+
+        return;
+    }
+
+    recipients.push({
+        name: name,
+        email: email
+    });
+
+    localStorage.setItem(
+        "kcxRecipients",
+        JSON.stringify(recipients)
+    );
+
+    document.getElementById("newName").value = "";
+    document.getElementById("newEmail").value = "";
+
+    document
+        .getElementById("addForm")
+        .classList.remove("show");
+
+    renderRecipients();
+
+    const success =
+        document.getElementById("success");
+
+    success.classList.add("show");
+
+    setTimeout(() => {
+        success.classList.remove("show");
+    }, 2500);
+
+}
+
+
+/* AMOUNT */
+function setAmount(value) {
+
+    document.getElementById("amount")
+        .value = value;
+
+}
+
+
+/* CURRENCY */
+function changeCurrency() {
+
+    const select =
+        document.getElementById("currency");
+
+    const selected =
+        select.options[select.selectedIndex];
+
+    document.getElementById("symbol")
+        .textContent =
+        selected.dataset.symbol;
+
+}
+
+
+/* CONTINUE */
+function continueTransfer() {
+
+    const amount =
+        document.getElementById("amount").value;
+
+    if (!amount || Number(amount) <= 0) {
+
+        alert("Please enter an amount.");
+
+        return;
+    }
+
+    const currency =
+        document.getElementById("currency").value;
+
+    const recipient =
+        document.getElementById("recipientName").textContent;
+
+    alert(
+        "Transfer ready\n\n" +
+        "Recipient: " + recipient +
+        "\nAmount: " + amount +
+        " " + currency
+    );
+
+}
+
+</script>
+
+</body>
+</html>
