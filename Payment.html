@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KCXmobil - Payments</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #090909;
+    color: white;
+}
+
+/* HEADER */
+.header {
+    height: 90px;
+    background: #050505;
+    border-bottom: 1px solid #292929;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 40px;
+}
+
+.logo {
+    font-size: 31px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #e60000;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-name {
+    text-align: right;
+}
+
+.profile-name strong {
+    display: block;
+    font-size: 16px;
+}
+
+.profile-name small {
+    color: #ff1717;
+    font-size: 13px;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+
+    background: #e60000;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+/* PAGE */
+.container {
+    width: 94%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px 0 50px;
+}
+
+.page-title {
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.page-title p {
+    color: #aaa;
+    font-size: 16px;
+}
+
+/* PAYMENT CARD */
+.payment-card {
+    background: #101010;
+    border: 1px solid #303030;
+    border-radius: 15px;
+    padding: 28px;
+}
+
+.payment-heading {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.payment-icon {
+    width: 55px;
+    height: 55px;
+
+    background: #f00000;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 27px;
+}
+
+.payment-heading h2 {
+    font-size: 28px;
+}
+
+/* PAYMENT TYPE */
+label {
+    display: block;
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 13px;
+}
+
+.payment-types {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.type {
+    height: 105px;
+
+    background: #111;
+    border: 1px solid #3a3a3a;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: .2s;
+}
+
+.type:hover {
+    border-color: #e00000;
+}
+
+.type.active {
+    border: 2px solid #ff1111;
+    background: #151515;
+}
+
+.type-icon {
+    font-size: 29px;
+    margin-bottom: 10px;
+}
+
+.type-name {
+    color: #ddd;
+}
+
+/* FORM GRID */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.field {
+    margin-bottom: 4px;
+}
+
+.input,
+.select,
+textarea {
+    width: 100%;
+    height: 62px;
+
+    background: #151515;
+    color: white;
+
+    border: 1px solid #363636;
+    border-radius: 10px;
+
+    padding: 0 18px;
+    font-size: 16px;
+
+    outline: none;
+}
+
+.input:focus,
+.select:focus,
+textarea:focus {
+    border-color: #e00000;
+}
+
+.select {
+    cursor: pointer;
+}
+
+/* TEXTAREA */
+textarea {
+    height: 75px;
+    padding-top: 17px;
+    resize: none;
+}
+
+/* AMOUNT */
+.amount-box {
+    position: relative;
+}
+
+.amount-box input {
+    padding-right: 75px;
+}
+
+.currency {
+    position: absolute;
+    right: 10px;
+    top: 9px;
+
+    height: 44px;
+    min-width: 58px;
+
+    border-radius: 9px;
+    background: #242424;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+/* FULL WIDTH */
+.full {
+    grid-column: 1 / -1;
+}
+
+/* PAY BUTTON */
+.pay {
+    width: 100%;
+    height: 60px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #f00000;
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.pay:hover {
+    background: #c90000;
+}
+
+/* RECENT */
+.recent {
+    margin-top: 25px;
+
+    background: #101010;
+    border: 1px solid #303030;
+    border-radius: 15px;
+
+    overflow: hidden;
+}
+
+.recent-header {
+    padding: 25px;
+    border-bottom: 1px solid #303030;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.recent-header h2 {
+    font-size: 22px;
+}
+
+.view {
+    color: #ff1111;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* TRANSACTION */
+.transaction {
+    padding: 20px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #292929;
+}
+
+.transaction:last-child {
+    border-bottom: none;
+}
+
+.transaction-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.transaction-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 10px;
+
+    background: #201010;
+    color: #ff1111;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+.transaction-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.transaction-info {
+    color: #999;
+    font-size: 13px;
+}
+
+.transaction-right {
+    text-align: right;
+}
+
+.transaction-amount {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.success {
+    color: #00d96b;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* POPUP */
+.popup {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 90%;
+    max-width: 400px;
+
+    background: #151515;
+    border: 1px solid #444;
+
+    border-radius: 15px;
+
+    padding: 28px;
+
+    text-align: center;
+
+    display: none;
+    z-index: 100;
+}
+
+.popup.show {
+    display: block;
+}
+
+.popup-icon {
+    font-size: 45px;
+    color: #00d96b;
+    margin-bottom: 15px;
+}
+
+.popup h2 {
+    margin-bottom: 10px;
+}
+
+.popup p {
+    color: #aaa;
+    line-height: 1.5;
+}
+
+.close {
+    margin-top: 20px;
+
+    width: 100%;
+    height: 48px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #e00000;
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+/* MOBILE */
+@media(max-width:700px) {
+
+    .header {
+        padding: 0 18px;
+        height: 75px;
+    }
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .profile-name {
+        display: none;
+    }
+
+    .container {
+        width: 94%;
+        padding-top: 25px;
+    }
+
+    .page-title h1 {
+        font-size: 29px;
+    }
+
+    .payment-card {
+        padding: 18px;
+    }
+
+    .payment-heading h2 {
+        font-size: 23px;
+    }
+
+    .payment-types {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .type {
+        height: 90px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .full {
+        grid-column: auto;
+    }
+
+    .transaction {
+        padding: 17px 15px;
+    }
+
+    .transaction-amount {
+        font-size: 14px;
+    }
+}
+
+@media(max-width:430px) {
+
+    .payment-types {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .transaction-info {
+        font-size: 11px;
+    }
+
+    .transaction-left {
+        gap: 9px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        <span>KCX</span>mobil
+    </div>
+
+    <div class="profile">
+
+        <div class="profile-name">
+            <strong>John Doe</strong>
+            <small>Premium</small>
+        </div>
+
+        <div class="avatar">
+            JD
+        </div>
+
+        <span>⌄</span>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <!-- TITLE -->
+
+    <div class="page-title">
+
+        <h1>Payment</h1>
+
+        <p>
+            Pay for services and utilities instantly
+        </p>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+
+    <section class="payment-card">
+
+        <div class="payment-heading">
+
+            <div class="payment-icon">
+                ▣
+            </div>
+
+            <h2>
+                Make a Payment
+            </h2>
+
+        </div>
+
+
+        <!-- PAYMENT TYPES -->
+
+        <label>
+            Payment Type
+        </label>
+
+        <div class="payment-types">
+
+            <div class="type active"
+                 onclick="selectType(this,'Electricity')">
+
+                <div class="type-icon">⚡</div>
+                <div class="type-name">Electricity</div>
+
+            </div>
+
+            <div class="type"
+                 onclick="selectType(this,'TV')">
+
+                <div class="type-icon">▣</div>
+                <div class="type-name">TV</div>
+
+            </div>
+
+            <div class="type"
+                 onclick="selectType(this,'Internet')">
+
+                <div class="type-icon">⌁</div>
+                <div class="type-name">Internet</div>
+
+            </div>
+
+            <div class="type"
+                 onclick="selectType(this,'Airtime')">
+
+                <div class="type-icon">▯</div>
+                <div class="type-name">Airtime</div>
+
+            </div>
+
+            <div class="type"
+                 onclick="selectType(this,'Water')">
+
+                <div class="type-icon">♢</div>
+                <div class="type-name">Water</div>
+
+            </div>
+
+            <div class="type"
+                 onclick="selectType(this,'Others')">
+
+                <div class="type-icon">▦</div>
+                <div class="type-name">Others</div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORM -->
+
+        <div class="form-grid">
+
+
+            <!-- WALLET -->
+
+            <div class="field">
+
+                <label>
+                    Select Wallet
+                </label>
+
+                <select class="select" id="wallet">
+
+                    <option value="USD">
+                        🇺🇸 USD Wallet
+                    </option>
+
+                    <option value="NGN">
+                        🇳🇬 NGN Wallet
+                    </option>
+
+                    <option value="EUR">
+                        🇪🇺 EUR Wallet
+                    </option>
+
+                    <option value="GBP">
+                        🇬🇧 GBP Wallet
+                    </option>
+
+                    <option value="AED">
+                        🇦🇪 AED Wallet
+                    </option>
+
+                    <option value="GHS">
+                        🇬🇭 GHS Wallet
+                    </option>
+
+                    <option value="CAD">
+                        🇨🇦 CAD Wallet
+                    </option>
+
+                    <option value="CNY">
+                        🇨🇳 CNY Wallet
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PROVIDER -->
+
+            <div class="field">
+
+                <label>
+                    Provider
+                </label>
+
+                <select class="select" id="provider">
+
+                    <option value="">
+                        Select Provider
+                    </option>
+
+                    <option>
+                        MTN
+                    </option>
+
+                    <option>
+                        Airtel
+                    </option>
+
+                    <option>
+                        Glo
+                    </option>
+
+                    <option>
+                        9mobile
+                    </option>
+
+                    <option>
+                        DSTV
+                    </option>
+
+                    <option>
+                        GOtv
+                    </option>
+
+                    <option>
+                        Spectranet
+                    </option>
+
+                    <option>
+                        AEDC
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ACCOUNT -->
+
+            <div class="field">
+
+                <label>
+                    Customer / Account Number
+                </label>
+
+                <input
+                    class="input"
+                    id="account"
+                    placeholder="Enter customer or meter number"
+                >
+
+            </div>
+
+
+            <!-- AMOUNT -->
+
+            <div class="field">
+
+                <label>
+                    Amount
+                </label>
+
+                <div class="amount-box">
+
+                    <input
+                        class="input"
+                        id="amount"
+                        type="number"
+                        placeholder="0.00"
+                    >
+
+                    <div
+                        class="currency"
+                        id="currency"
+                    >
+                        USD
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="field full">
+
+                <label>
+                    Description (Optional)
+                </label>
+
+                <textarea
+                    id="description"
+                    placeholder="Enter payment description"
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <button class="pay" onclick="makePayment()">
+
+            ♙ &nbsp; Pay Now
+
+        </button>
+
+    </section>
+
+
+    <!-- RECENT PAYMENTS -->
+
+    <section class="recent">
+
+        <div class="recent-header">
+
+            <h2>
+                Recent Payments
+            </h2>
+
+            <span class="view">
+                View All
+            </span>
+
+        </div>
+
+
+        <div id="transactions">
+
+            <div class="transaction">
+
+                <div class="transaction-left">
+
+                    <div class="transaction-icon">
+                        ⚡
+                    </div>
+
+                    <div>
+
+                        <div class="transaction-name">
+                            Electricity Bill
+                        </div>
+
+                        <div class="transaction-info">
+                            AEDC Prepaid<br>
+                            10 May 2024, 11:30 AM
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="transaction-right">
+
+                    <div class="transaction-amount">
+                        50.00 USD
+                    </div>
+
+                    <div class="success">
+                        Successful
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div class="transaction-left">
+
+                    <div class="transaction-icon">
+                        ⌁
+                    </div>
+
+                    <div>
+
+                        <div class="transaction-name">
+                            Internet Subscription
+                        </div>
+
+                        <div class="transaction-info">
+                            Spectranet<br>
+                            08 May 2024, 09:15 AM
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="transaction-right">
+
+                    <div class="transaction-amount">
+                        25.00 USD
+                    </div>
+
+                    <div class="success">
+                        Successful
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="transaction">
+
+                <div class="transaction-left">
+
+                    <div class="transaction-icon">
+                        ▯
+                    </div>
+
+                    <div>
+
+                        <div class="transaction-name">
+                            Airtime Top Up
+                        </div>
+
+                        <div class="transaction-info">
+                            MTN<br>
+                            06 May 2024, 04:20 PM
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="transaction-right">
+
+                    <div class="transaction-amount">
+                        10.00 USD
+                    </div>
+
+                    <div class="success">
+                        Successful
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- SUCCESS POPUP -->
+
+<div class="popup" id="popup">
+
+    <div class="popup-icon">
+        ✓
+    </div>
+
+    <h2>
+        Payment Ready
+    </h2>
+
+    <p id="popupText">
+        Your payment information has been entered successfully.
+    </p>
+
+    <button
+        class="close"
+        onclick="closePopup()"
+    >
+        Done
+    </button>
+
+</div>
+
+
+<script>
+
+/* PAYMENT TYPE */
+
+let selectedType = "Electricity";
+
+function selectType(element, type) {
+
+    document
+        .querySelectorAll(".type")
+        .forEach(item => {
+            item.classList.remove("active");
+        });
+
+    element.classList.add("active");
+
+    selectedType = type;
+}
+
+
+/* WALLET CURRENCY */
+
+document
+    .getElementById("wallet")
+    .addEventListener("change", function() {
+
+        document
+            .getElementById("currency")
+            .textContent = this.value;
+
+    });
+
+
+/* MAKE PAYMENT */
+
+function makePayment() {
+
+    const provider =
+        document.getElementById("provider").value;
+
+    const account =
+        document.getElementById("account").value.trim();
+
+    const amount =
+        document.getElementById("amount").value;
+
+    const wallet =
+        document.getElementById("wallet").value;
+
+
+    if (!provider) {
+
+        alert("Please select a provider.");
+
+        return;
+
+    }
+
+
+    if (!account) {
+
+        alert("Please enter the customer/account number.");
+
+        return;
+
+    }
+
+
+    if (!amount || Number(amount) <= 0) {
+
+        alert("Please enter a valid amount.");
+
+        return;
+
+    }
+
+
+    document.getElementById("popupText")
+        .textContent =
+        selectedType +
+        " payment of " +
+        amount +
+        " " +
+        wallet +
+        " to " +
+        provider +
+        " is ready to process.";
+
+
+    document
+        .getElementById("popup")
+        .classList.add("show");
+
+}
+
+
+/* CLOSE */
+
+function closePopup() {
+
+    document
+        .getElementById("popup")
+        .classList.remove("show");
+
+}
+
+</script>
+
+</body>
+</html>
